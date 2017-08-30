@@ -32,7 +32,7 @@ The bees are awakening to the life in a yellow wonder!
 EXTRA CREDIT:
 Once you get this lab to pass, read about lambda expressions in the
 Python docs:
-https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions 
+https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions
 
 Modify your code to use lambda expressions instead of separately defined key functions.
 
@@ -41,8 +41,43 @@ Modify your code to use lambda expressions instead of separately defined key fun
 # Write your code here:
 
 
+def most_spaces(items):
+    def num_spaces(item):
+        return item.count(' ')
+    return max(items, key=num_spaces)
+
+
+def count_chars(item, charset, included=True):
+    count = 0
+    for char in item.lower():
+        if char in charset:
+            count += 1
+    return count
+
+
+def count_vowels(item):
+    return count_chars(item, 'aeiou')
+
+
+def count_consonants(item):
+    return len(item) - count_vowels(item) - item.count(' ')
+
+
+def most_consonants(items):
+    return max(items, key=count_consonants)
+
+
+def fewest_vowels(items):
+    return min(items, key=count_vowels)
+
+
+def sorted_by_word_count(items):
+    def word_count(item):
+        return len(item.split())
+    return sorted(items, key=word_count)
 
 # Do not edit any code below this line!
+
 
 if __name__ == '__main__':
     import doctest

@@ -48,6 +48,15 @@ CALLING: h 3 2 31
 # Write your code here:
 
 
+def memoize(func):
+    memory = {}
+
+    def wrapper(*args):
+        if args not in memory:
+            memory[args] = func(*args)
+        return memory[args]
+    return wrapper
+
 
 # Do not edit any code below this line!
 
@@ -56,15 +65,18 @@ def f(x):
     print("CALLING: f {}".format(x))
     return x ** 2
 
+
 @memoize
 def g(x, y):
     print("CALLING: g {} {}".format(x, y))
     return (2 - x) / y
 
+
 @memoize
 def h(x, y, z=42):
     print("CALLING: h {} {} {}".format(x, y, z))
     return z // (x + y)
+
 
 if __name__ == '__main__':
     import doctest

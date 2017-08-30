@@ -33,7 +33,32 @@ Nemo the Fish says:
 '''
 
 # Write your code here:
+class Animal(object):
+    sound = ''
 
+    def __init__(self, name):
+        self.name = name
+
+    def description(self):
+        return f'{self.name} the {type(self).__name__}'
+
+    def speak(self):
+        return self.sound
+
+    def emote(self):
+        print(f'{self.description()} says: {self.speak()}')
+
+
+class Dog(Animal):
+    sound = 'Woof!'
+
+
+class Cat(Animal):
+    sound = 'Meow!'
+
+
+class Fish(Animal):
+    pass
 
 
 # Do not edit any code below this line!

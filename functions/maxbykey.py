@@ -32,15 +32,22 @@ This is a quick typing exercise. You are to fill in the `max_by_key` function be
 
 '''
 
+
 def get_gpa(who):
     return who["gpa"]
 
 # Copy in the code for max_by_key here:
 
+
 def max_by_key(items, key):
-    return
+    biggest = items[0]
+    for item in items[1:]:
+        if key(item) > key(biggest):
+            biggest = item
+    return biggest
 
 # Do not edit any code below this line!
+
 
 if __name__ == '__main__':
     import doctest

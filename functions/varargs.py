@@ -46,6 +46,27 @@ Going to x=8, y=33, z=-4
 # Write your code here:
 
 
+def set_destination(x, y, z):
+    print(f"Going to x={x}, y={y}, z={z}")
+
+
+def product(a, b, c):
+    print(a * b * c)
+
+
+def total(u, v, w):
+    print(u + v + w)
+
+
+def max_even(*args):
+    if not args:
+        print(None)
+    max_even = args[0]
+    for arg in args[1:]:
+        if arg % 2 == 0 and arg > max_even:
+            max_even = arg
+    print(max_even)
+
 
 # Do not edit any code below this line!
 

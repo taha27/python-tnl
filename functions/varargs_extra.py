@@ -33,6 +33,25 @@ passed-in keyword arguments.
 # Write your code here:
 
 
+def key_for_biggest_value(**kwargs):
+    key_for_val = None
+    max_val = 0
+    for key, val in kwargs.items():
+        if val > max_val:
+            max_val = val
+            key_for_val = key
+    return key_for_val
+
+
+def val_for_longest_key(**kwargs):
+    max_key = ''
+    val_for_key = None
+    for key, val in kwargs.items():
+        if len(key) > len(max_key):
+            max_key = key
+            val_for_key = val
+    return val_for_key
+
 
 # Do not edit any code below this line!
 

@@ -67,22 +67,26 @@ True
 '''
 
 # Write your code here:
+
+
+import functools
+
+# using total_order class decorator allows auto fill-in of ordering
+# methods if at least one of < > <= >= is defined
+@functools.total_ordering
 class Money(object):
-
     def __init__(self, dollars, cents):
-
         if cents >= 100 or cents < 0:
-            carry, cents = divmod(cents, 100)
-            dollars += carry
-
+            carry_dollar, cents = divmod(cents, 100)
+            dollars += carry_dollar
         self.dollars = dollars
         self.cents = cents
 
-    def __str__(self):
-        return f'${self.dollars}.{round(self.cents, 2):02d}'
-
     def __repr__(self):
         return f'{self.__class__.__name__}({self.dollars}, {self.cents})'
+
+    def __str__(self):
+        return f'${self.dollars}.{self.cents:02}'
 
     def __add__(self, other):
         return Money(self.dollars + other.dollars, self.cents + other.cents)
@@ -92,6 +96,19 @@ class Money(object):
 
     def __mul__(self, multiplier):
         return Money(self.dollars * multiplier, self.cents * multiplier)
+
+    def __eq__(self, other):
+        return self.dollars == other.dollars and self.cents == other.cents
+
+    def __lt__(self, other):
+        if self.dollars == other.dollars:
+            return self.cents < other.cents
+        return self.dollars < other.dollars
+
+    # def __ge__(self, other):
+    #     if self.dollars == other.dollars:
+    #         return self.cents >= other.cents
+    #     return self.dollars > other.dollars
 
 # Do not edit any code below this line!
 

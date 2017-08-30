@@ -51,7 +51,15 @@ Let's ensure @Memoize is a class-based decorator, not function-based.
 
 # Write your code here:
 
+class Memoize(object):
+    def __init__(self, func):
+        self.memory = {}
+        self.func = func
 
+    def __call__(self, *args):
+        if args not in self.memory:
+            self.memory[args] = self.func(*args)
+        return self.memory[args]
 
 # Do not edit any code below this line!
 
